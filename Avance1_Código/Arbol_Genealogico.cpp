@@ -18,7 +18,7 @@ struct Nodo {
 
 Nodo* raiz = NULL;
 
-// Buscar nodo por ID
+// Buscar nodo por ID (puntero)
 Nodo* buscarPadre(Nodo* nodo, int id) {
     if (nodo == NULL) { return NULL; }
     if (nodo->id == id) { return nodo; }
@@ -114,7 +114,7 @@ bool eliminarMiembro(Nodo* nodo, int id) {
     return eliminarMiembro(nodo->izquierdo, id) || eliminarMiembro(nodo->derecho, id);
 }
 
-// Funcion Menú
+// Funcion MenÃº
 void menuInsertarMiembro() {
     int id, idPadre;
     string nombre;
@@ -128,7 +128,7 @@ void menuInsertarMiembro() {
     cin >> idPadre;
 
     if (idPadre != 0) {
-        cout << "¿Lado del hijo? (I = Izquierdo, D = Derecho): ";
+        cout << "Â¿Lado del hijo? (I = Izquierdo, D = Derecho): ";
         cin >> lado;
     } else {
         lado = 'R'; // raiz
