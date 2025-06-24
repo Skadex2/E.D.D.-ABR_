@@ -5,6 +5,7 @@ Proceso GestorArbolGenealogico
 	Definir totalMiembros, opcion, i Como Entero
 	Definir nombreNuevo, lado Como Caracter
 	Definir idNuevo, idPadre, idBuscar, idEliminar Como Entero
+        Definir indicePadre Como Entero
 	
 	Dimension padre_id[100], padre_nombre[100], padre_izq[100], padre_der[100], pila[100], pila1[100], pila2[100]
     Definir tope, actual Como Entero
@@ -55,7 +56,6 @@ Proceso GestorArbolGenealogico
 						Escribir "Miembro raíz insertado."
 					Sino
 						// Buscar índice del padre antes de usarlo
-						Definir indicePadre Como Entero
 						indicePadre <- 0
 						Para i <- 1 Hasta totalMiembros - 1
 							Si padre_id[i] = idPadre Entonces
