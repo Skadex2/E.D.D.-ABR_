@@ -18,7 +18,7 @@ struct Nodo {
     }
 };
 
-Nodo* raiz = NULL;
+Nodo* raiz = NULL; //Inicializamos la raíz como NULL
 
 // Buscar si un ID ya existe en el arbol
 bool existeID(Nodo* nodo, int id) {
@@ -57,13 +57,15 @@ bool insertarAutomatico(Nodo* nodo, int id, string nombre, int idPadre) {
         return false;
     }
 
-    if (nodo->id == idPadre) {
+    if (nodo->id == idPadre) {  // Si encontramos el padre
+    	
+    	// Insertamos en el hijo izquierdo si está vacío
         if (nodo->izquierdo == NULL) {
-            nodo->izquierdo = new Nodo(id, nombre);
+            nodo->izquierdo = new Nodo(id, nombre); // Crear nuevo nodo izquierdo
             cout << "Insertado automaticamente como hijo izquierdo.\n";
             return true;
         } else if (nodo->derecho == NULL) {
-            nodo->derecho = new Nodo(id, nombre);
+            nodo->derecho = new Nodo(id, nombre); // Crear nuevo nodo derecho
             cout << "Insertado automaticamente como hijo derecho.\n";
             return true;
         } else {
@@ -83,14 +85,14 @@ bool insertarAutomatico(Nodo* nodo, int id, string nombre, int idPadre) {
 
 // ================= FUNCIONES =================
 
-//Funci�n insertar Miembro con ID del padre
+//Función insertar Miembro con ID del padre
 void insertarMiembro(int id, string nombre, int idPadre) {
     if (existeID(raiz, id)) {
         cout << "Error: Ya existe un miembro con ese ID.\n";
         return;
     }
 	
-	//Se inserta como ra�z si la ID padre es 0
+	//Se inserta como raíz si la ID padre es 0
     if (idPadre == 0) {
         if (raiz == NULL) {
             raiz = new Nodo(id, nombre);
@@ -113,9 +115,9 @@ void mostrarPreorden(Nodo* nodo) {
     if (nodo == NULL) {
         return;
     }
-    cout << nodo->id << " - " << nodo->nombre << endl;
-    mostrarPreorden(nodo->izquierdo);
-    mostrarPreorden(nodo->derecho);
+    cout << nodo->id << " - " << nodo->nombre << endl;  //Mostrar el nodo actual (padre)
+    mostrarPreorden(nodo->izquierdo); // Mostrar el hijo izquierdo
+    mostrarPreorden(nodo->derecho); // Mostrar el hijo derecho
 }
 
 //Funcion mostrar Inorden (I,R,D)
@@ -124,7 +126,7 @@ void mostrarInorden(Nodo* nodo) {
         return;
     }
     mostrarInorden(nodo->izquierdo);
-    cout << nodo->id << " - " << nodo->nombre << endl;
+    cout << nodo->id << " - " << nodo->nombre << endl; 
     mostrarInorden(nodo->derecho);
 }
 
@@ -135,7 +137,7 @@ void mostrarPostorden(Nodo* nodo) {
     }
     mostrarPostorden(nodo->izquierdo);
     mostrarPostorden(nodo->derecho);
-    cout << nodo->id << " - " << nodo->nombre << endl;
+    cout << nodo->id << " - " << nodo->nombre << endl; 
 }
 
 //Funcion eliminar Miembro, si no tiene hijos
@@ -144,9 +146,9 @@ bool eliminarMiembro(Nodo* nodo, int id) {
         return false;
     }
 
-    if (nodo->izquierdo != NULL && nodo->izquierdo->id == id) {
-        if (nodo->izquierdo->izquierdo == NULL && nodo->izquierdo->derecho == NULL) {
-            delete nodo->izquierdo;
+    if (nodo->izquierdo != NULL && nodo->izquierdo->id == id) {  // Si encontramos el miembro en el hijo izquierdo
+        if (nodo->izquierdo->izquierdo == NULL && nodo->izquierdo->derecho == NULL) {  // Si no tiene hijos
+            delete nodo->izquierdo;    // Eliminar el nodo
             nodo->izquierdo = NULL;
             return true;
         } else {
@@ -155,9 +157,9 @@ bool eliminarMiembro(Nodo* nodo, int id) {
         }
     }
 
-    if (nodo->derecho != NULL && nodo->derecho->id == id) {
-        if (nodo->derecho->izquierdo == NULL && nodo->derecho->derecho == NULL) {
-            delete nodo->derecho;
+    if (nodo->derecho != NULL && nodo->derecho->id == id) {   // Si encontramos el miembro en el hijo derecho
+        if (nodo->derecho->izquierdo == NULL && nodo->derecho->derecho == NULL) {    // Si no tiene hijos
+            delete nodo->derecho;   // Eliminar el nodo
             nodo->derecho = NULL;
             return true;
         } else {
@@ -186,7 +188,7 @@ void menuInsertarMiembro() {
     cout << "Ingrese ID del padre (0 si es raiz): ";
     cin >> idPadre;
 
-    insertarMiembro(id, nombre, idPadre);
+    insertarMiembro(id, nombre, idPadre);  // Llamar a la función para insertar el miembro
 }
 
 //Funcion EliminarMiembro
@@ -268,4 +270,3 @@ int main() {
 
     return 0;
 }
-
