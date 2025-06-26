@@ -33,24 +33,6 @@ bool existeID(Nodo* nodo, int id) {
     return existeID(nodo->izquierdo, id) || existeID(nodo->derecho, id);
 }
 
-//Buscar un Nodo con ID
-Nodo* buscarPadre(Nodo* nodo, int id) {
-    if (nodo == NULL) {
-        return NULL;
-    }
-    if (nodo->id == id) {
-        return nodo;
-    }
-	
-	//Buscar en los hijos
-    Nodo* izq = buscarPadre(nodo->izquierdo, id);
-    if (izq != NULL) {
-        return izq;
-    }
-
-    return buscarPadre(nodo->derecho, id);
-}
-
 //Insertar un hijo bajo un padre especifico
 bool insertarAutomatico(Nodo* nodo, int id, string nombre, int idPadre) {
     if (nodo == NULL) {
